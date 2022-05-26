@@ -14,6 +14,7 @@ This directory contains a simple implementation of Conway's Game of Life.
 0 is alive
  
 step 1
+
 1 1 1 
 
 0 0 0
@@ -21,6 +22,7 @@ step 1
 1 1 1
  
 step 2
+
 1 0 1
 
 1 0 1
@@ -28,6 +30,7 @@ step 2
 1 0 1
  
 step 3
+
 1 1 1
 
 0 0 0
