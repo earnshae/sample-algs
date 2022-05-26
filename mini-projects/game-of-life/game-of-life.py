@@ -32,6 +32,13 @@
 #
 # */
 
+import random
+import time
+from datetime import datetime
+from random import choice
+
+random.seed(datetime.now())
+
 from typing import List
 
 LIVE_CELL = 0
@@ -74,6 +81,18 @@ def init_game_board() -> List:
     board = [None]*Y
     for y in range(Y):
         board[y] = [None]*X
+
+    return board
+
+def init_random_game_board(seq: List) -> List:
+    board = init_game_board()
+
+    print(seq)
+    for y in range(Y):
+        for x in range(X):
+            board[y][x] = choice(seq)
+
+
 
     return board
 
@@ -134,9 +153,6 @@ def count_neighbours(board: List, x:int, y:int)->List:
 
     return live_count
 
-hsh_state = {}
-hsh_state[LIVE_CELL] = "LIVE"
-hsh_state[DEAD_CELL] = "DEAD"
 def play_cell(board: List, x:int, y:int)->int:
     curr_state = board[x][y]
     neighbour_count = count_neighbours(board, x, y)
@@ -189,5 +205,19 @@ print_game(1, game_board)
 for i in range(2, 4):
     game_board = play_turn(game_board)
     print_game(i, game_board)
+
+X = 5
+Y = 5
+
+#33% chance of live cell
+game_board = init_random_game_board([LIVE_CELL, DEAD_CELL, DEAD_CELL])
+print_game(0, game_board)
+
+for i in range(5):
+    game_board = play_turn(game_board)
+    print_game(i, game_board)
+    time.sleep(5)
+
+#print_game(game_board)
 
 
